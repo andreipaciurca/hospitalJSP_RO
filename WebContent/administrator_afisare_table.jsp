@@ -19,10 +19,13 @@
           <h2 style="font-weight: bold; font-style: normal;">(Admin) Afisare | Stergere</h2>
           
           <%
-          //conexiune baza de date
           String table = request.getParameter("selectTable");
           if(table==null || table=="")
         	  response.sendRedirect("administrator_afisare.jsp");
+          else
+        	  session.setAttribute("table", table);
+          
+          table = session.getAttribute("table").toString();
           
           out.println("<h4 style=\"font-weight: bold; font-style: normal;\">Tabel: "+table.toUpperCase()+"</h4>");
           
@@ -34,6 +37,7 @@
           ResultSetMetaData rsmd = rs.getMetaData();
           int columnCount = rsmd.getColumnCount();
           %>
+          <form method="POST" action="AdminDeleteTables.jsp">
           <table>
           	<tr>
           	<%
@@ -43,18 +47,26 @@
           	%>
           	</tr>
           	<%
+          	String valueRowID = "";
           	while(rs.next()){
           		out.println("<tr>");
-          		for (int i = 1; i <= columnCount; i++ )
+          		for (int i = 1; i <= columnCount; i++ ){
                 	  out.println("<td>"+rs.getString(i)+"</td>");
+                	  if(i==1) //prima coloana -> cheia primara a tabelului: ID_(text)
+                	  	valueRowID = rs.getString(i);
+          		}
+          		out.println("<td><input type=\"checkbox\" name=\"idCheckBox\" value="+"\""+valueRowID+"\""+"/></td>");
           		out.println("</tr>");
           	}
           	%>
           </table>
-          
+          <br>
+          <button type="submit">Delete</button>
+          </form>
+
           <br><br><br>
 
-          
+
           <button type="submit" onclick="window.location.reload(false);">Refresh</button>
           <form action="changeTable.jsp" method="POST">
             <button type="submit">Go Back</button>

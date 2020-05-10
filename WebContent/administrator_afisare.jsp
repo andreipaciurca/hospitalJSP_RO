@@ -40,8 +40,11 @@
           </form>
           
           <br><br><br>
-
-		  <button type="reset" onclick="Reset();" placeholder="Clear selected item">Reset</button>
+          
+		  <form action="goAdminHome.jsp" method="POST">
+            <button type="submit">Go Back</button>
+          </form>
+		  <button type="reset" onclick="Reset();">Reset</button>
           <form action="logout.jsp" method="post">
             <button type="submit">LogOut</button>
           </form>
