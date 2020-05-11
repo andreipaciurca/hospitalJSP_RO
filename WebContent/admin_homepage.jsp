@@ -16,7 +16,7 @@
         
           <h2 style="font-weight: bold; font-style: normal;">User: Administrator</h2><br>
           
-          <form class="login-form" action="" method="post">
+          <form class="login-form" action="admin_homepage_redirect_inserare.jsp" method="post">
             <button type="submit">Inserare</button>
           </form>
 

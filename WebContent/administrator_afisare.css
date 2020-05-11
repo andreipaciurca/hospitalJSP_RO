@@ -169,5 +169,44 @@ table, th, td {
     color:#43A047
 }
 
+/* Input */
+input {
+  width: 100%;
+  background-color: #FFFFFF;
+  text-align: center;
+  border: 2px solid #43A047;
+}
+
+input[type=text] {
+	width: 110px;
+	height: 100%;
+	display: flex;
+	border-bottom: 1px #43A047;
+}
+
+input[type=text]:focus {
+  background-color: #43A047;
+  color: #FFFFFF
+  ;
+}
+
+input[type=number] {
+	width: 110px;
+	height: 100%;
+	display: flex;
+	border-bottom: 1px #43A047;
+}
+
+input[type=number]:focus {
+  background-color: #43A047;
+  color: #FFFFFF
+  ;
+}
 
 
+
+input[type=date]:focus {
+  background-color: #43A047;
+  color: #FFFFFF
+  ;
+}
