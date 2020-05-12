@@ -12,6 +12,7 @@
     <meta name="author" content="Paciurca Andrei-Alexandru">
     <meta http-equiv="Content-Type" content="text/html;">
     <title>Administrator: Inserare</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     
@@ -54,11 +55,11 @@
                 	  if(i==1)
                 		  out.println("<td><input type=\"hidden\" name=\"insertInput\" value=\"0\" required/></td>");
                 	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_"))
-                		  out.println("<td><input type=\"number\" min=\"0\" pattern=\"[0-9]+\" size=75 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
+                		  out.println("<td><input type=\"number\" onkeypress=\"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57\" min=\"0\" step=\"1\" pattern=\"\\d+\" size=90 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
                 	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
-                		  out.println("<td><input type=\"date\" placeholder=\"yyyy-mm-dd hh:mm:ss\" size=120 name=\"insertInput\" value="+date+"required/></td>");
+                		  out.println("<td><input type=\"datetime-local\" placeholder=\"yyyy-mm-dd hh:mm:ss\" size=110 name=\"insertInput\" value="+"\""+date+"\""+" /></td>");
                 	  else
-                		  out.println("<td><input type=\"text\" size=75 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
+                		  out.println("<td><input type=\"text\" size=90 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
           		}
           	%>
           	</tr>

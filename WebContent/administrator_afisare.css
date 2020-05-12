@@ -211,3 +211,12 @@ input[type=date]:focus {
   background-color: #43A047;
   color: #FFFFFF;
 }
+
+input[type=datetime-local] {
+  font-size: 10px;
+}
+
+input[type=datetime-local]:focus {
+  background-color: #43A047;
+  color: #FFFFFF;
+}
