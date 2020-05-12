@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import ="java.sql.*" 
 		 import ="java.time.LocalDateTime"
 %>
@@ -40,39 +40,41 @@
           ResultSetMetaData rsmd = rs.getMetaData();
           int columnCount = rsmd.getColumnCount();
           %>
+          
           <form method="POST" action="AdminInsertData.jsp">
-          <table>
-          	<tr>
-          	<%
-          	for (int i = 1; i <= columnCount; i++ )
-          	  out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
-          	%>
-          	</tr>
-          	<tr>
-          	<%
-          	String date = LocalDateTime.now().toString();
-          		for (int i = 1; i <= columnCount; i++ ){
-                	  if(i==1)
-                		  out.println("<td><input type=\"hidden\" name=\"insertInput\" value=\"0\" required/></td>");
-                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_"))
-                		  out.println("<td><input type=\"number\" onkeypress=\"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57\" min=\"0\" step=\"1\" pattern=\"\\d+\" size=90 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
-                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
-                		  out.println("<td><input type=\"datetime-local\" placeholder=\"yyyy-mm-dd hh:mm:ss\" size=110 name=\"insertInput\" value="+"\""+date+"\""+" /></td>");
-                	  else
-                		  out.println("<td><input type=\"text\" size=90 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
-          		}
-          	%>
-          	</tr>
-          </table>
-          
-          <br>
-          
-          <button type="submit">Submit</button>
+	          <table>
+	          	<tr>
+	          	<%
+	          	for (int i = 1; i <= columnCount; i++ )
+	          	  out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
+	          	%>
+	          	</tr>
+	          	<tr>
+	          	<%
+	          	String date = LocalDateTime.now().toString();
+	          		for (int i = 1; i <= columnCount; i++ ){
+	                	  if(i==1)
+	                		  out.println("<td><input type=\"hidden\" name=\"insertInput\" value=\"0\" required/></td>");
+	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_"))
+	                		  out.println("<td><input type=\"number\" onkeypress=\"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57\" min=\"0\" step=\"1\" pattern=\"\\d+\" size=90 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
+	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
+	                		  out.println("<td><input type=\"datetime-local\" placeholder=\"yyyy-mm-dd hh:mm:ss\" size=110 name=\"insertInput\" value="+"\""+date+"\""+" /></td>");
+	                	  else
+	                		  out.println("<td><input type=\"text\" size=90 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
+	          		}
+	          	%>
+	          	</tr>
+	          </table>
+	          
+	          <br>
+	          
+	          <button type="submit">Submit</button>
           </form>
 
           <br><br><br>
 
           <button type="submit" onclick="window.location.reload(false);">Refresh</button>
+          
           <form action="goAdminInsert.jsp" method="POST">
             <button type="submit">Go Back</button>
           </form>

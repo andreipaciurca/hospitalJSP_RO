@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import ="java.sql.*" %>
 
 <!DOCTYPE html>
@@ -38,36 +38,38 @@
           int columnCount = rsmd.getColumnCount();
           %>
           <form method="POST" action="AdminDeleteTables.jsp">
-          <table>
-          	<tr>
-          	<%
-          	for (int i = 1; i <= columnCount; i++ )
-          	  out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
-          	out.println("<th>DELETE</th>");
-          	%>
-          	</tr>
-          	<%
-          	String valueRowID = "";
-          	while(rs.next()){
-          		out.println("<tr>");
-          		for (int i = 1; i <= columnCount; i++ ){
-                	  out.println("<td>"+rs.getString(i)+"</td>");
-                	  if(i==1) //prima coloana -> cheia primara a tabelului: ID_(text)
-                	  	valueRowID = rs.getString(i);
-          		}
-          		out.println("<td><input type=\"checkbox\" name=\"idCheckBox\" value="+"\""+valueRowID+"\""+"/></td>");
-          		out.println("</tr>");
-          	}
-          	%>
-          </table>
-          <br>
-          <button type="submit">Delete</button>
+	          <table>
+	          	<tr>
+	          	<%
+	          	for (int i = 1; i <= columnCount; i++ )
+	          	  out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
+	          	out.println("<th>DELETE</th>");
+	          	%>
+	          	</tr>
+	          	<%
+	          	String valueRowID = "";
+	          	while(rs.next()){
+	          		out.println("<tr>");
+	          		for (int i = 1; i <= columnCount; i++ ){
+	                	  out.println("<td>"+rs.getString(i)+"</td>");
+	                	  if(i==1) //prima coloana -> cheia primara a tabelului: ID_(text)
+	                	  	valueRowID = rs.getString(i);
+	          		}
+	          		out.println("<td><input type=\"checkbox\" name=\"idCheckBox\" value="+"\""+valueRowID+"\""+"/></td>");
+	          		out.println("</tr>");
+	          	}
+	          	%>
+	          </table>
+	          
+	          <br>
+	          
+	          <button type="submit">Delete</button>
           </form>
 
           <br><br><br>
 
-
           <button type="submit" onclick="window.location.reload(false);">Refresh</button>
+          
           <form action="changeTable.jsp" method="POST">
             <button type="submit">Go Back</button>
           </form>

@@ -1,10 +1,8 @@
 <%@ page import ="java.sql.*" %>
 <%
 	
-	
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/spital",
-	        "root", "");
+	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/spital","root", "");
 	Statement st = con.createStatement();
 	ResultSet rs = st.executeQuery("select * from " + session.getAttribute("table"));
     ResultSetMetaData rsmd = rs.getMetaData();
