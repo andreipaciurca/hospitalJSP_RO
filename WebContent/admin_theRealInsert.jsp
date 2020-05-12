@@ -1,5 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import ="java.sql.*" %>
+<%@ page import ="java.sql.*" 
+		 import ="java.time.LocalDateTime"
+%>
 
 <!DOCTYPE html>
 <html lang="ro">
@@ -47,25 +49,27 @@
           	</tr>
           	<tr>
           	<%
+          	String date = LocalDateTime.now().toString();
           		for (int i = 1; i <= columnCount; i++ ){
                 	  if(i==1)
-                		  out.println("<td><input type=\"hidden\"  name=\"insertInput\" value=\"NULL\"></td>");
+                		  out.println("<td><input type=\"hidden\" name=\"insertInput\" value=\"0\" required/></td>");
                 	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_"))
-                		  out.println("<td><input type=\"number\" min=\"0\" pattern=\"[0-9]+\" size=75 name=\"insertInput\" value="+"\""+""+"\""+"/></td>");
+                		  out.println("<td><input type=\"number\" min=\"0\" pattern=\"[0-9]+\" size=75 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
                 	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
-                		  out.println("<td><input type=\"date\" size=75 name=\"insertInput\" value="+"\""+""+"\""+"/></td>");
+                		  out.println("<td><input type=\"date\" placeholder=\"yyyy-mm-dd hh:mm:ss\" size=120 name=\"insertInput\" value="+date+"required/></td>");
                 	  else
-                		  out.println("<td><input type=\"text\" size=75 name=\"insertInput\" value="+"\""+""+"\""+"/></td>");
+                		  out.println("<td><input type=\"text\" size=75 name=\"insertInput\" value="+"\""+""+"\""+"required/></td>");
           		}
           	%>
           	</tr>
           </table>
+          
           <br>
+          
           <button type="submit">Submit</button>
           </form>
 
           <br><br><br>
-
 
           <button type="submit" onclick="window.location.reload(false);">Refresh</button>
           <form action="goAdminInsert.jsp" method="POST">

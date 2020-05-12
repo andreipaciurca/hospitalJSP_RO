@@ -203,10 +203,11 @@ input[type=number]:focus {
   ;
 }
 
-
+input[type=date] {
+  font-size: 10px;
+}
 
 input[type=date]:focus {
   background-color: #43A047;
-  color: #FFFFFF
-  ;
+  color: #FFFFFF;
 }
