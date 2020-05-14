@@ -7,7 +7,7 @@
     <meta name="author" content="Paciurca Andrei-Alexandru">
     <meta http-equiv="Content-Type" content="text/html;">
     <link rel="stylesheet" type="text/css" href="administrator_homepage.css">
-    <title>Administrator: Home</title>
+    <title>Administrator: Homepage</title>
 </head>
 <body>
     
@@ -20,7 +20,7 @@
             <button type="submit">Inserare</button>
           </form>
 
-          <form action="" method="post">
+          <form action="admin_select_update.jsp" method="post">
             <button type="submit">Modificare</button>
           </form>
 

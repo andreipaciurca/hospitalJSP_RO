@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="administrator_afisare.css">
     <meta name="author" content="Paciurca Andrei-Alexandru">
     <meta http-equiv="Content-Type" content="text/html;">
-    <title>Administrator: Inserare</title>
+    <title>Administrator: Modificare</title>
 
     <script type="text/javascript">
         function Reset() {
@@ -24,10 +24,10 @@
     <div class="login-page">
         <div class="form">
 
-          <h2 style="font-weight: bold; font-style: normal;">(Admin) Inserare</h2><br>
+          <h2 style="font-weight: bold; font-style: normal;">(Admin) Modificare</h2><br>
         
-          <form method="POST" action="admin_theRealInsert.jsp">
-            <select id="tabel" name="selectTableInsert" onfocus='this.size=6;' onblur='this.size=0;' onchange='this.size=1; this.blur();'>
+          <form method="POST" action="admin_update_theRealUpdate.jsp">
+            <select id="tabel" name="tableUpdate" onfocus='this.size=6;' onblur='this.size=0;' onchange='this.size=1; this.blur();'>
                 <option value="" disabled selected>Select table</option>
                 <option value="fise_observatii">Fise Observatii</option>    
                 <option value="pacienti">Pacienti</option>
