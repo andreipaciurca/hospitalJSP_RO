@@ -22,7 +22,9 @@
           <h2 style="font-weight: bold; font-style: normal;">(Admin) Update</h2>
           
           <%
-          String tableUpdate = request.getParameter("tableUpdate");
+          
+		  String tableUpdate = session.getAttribute("tableUpdate").toString();
+          String radioToUpdate = request.getParameter("idRadioUpdate");
           
           if(tableUpdate==null || tableUpdate=="")
         	  response.sendRedirect("admin_select_update.jsp");
@@ -39,34 +41,35 @@
           ResultSet rs = st.executeQuery("select * from " + tableUpdate);
           ResultSetMetaData rsmd = rs.getMetaData();
           int columnCount = rsmd.getColumnCount();
+          
+          System.out.println(rs.absolute(1));
+          //System.out.println(rs.getString(1));
           %>
           
-          <form method="POST" action="admin_update_logicSubmit.jsp">
+          <form method="POST" action="">
 	          <table>
 	          	<tr>
 	          	<%
 	          	for (int i = 1; i <= columnCount; i++ )
-	          	  out.println("<th>"+rsmd.getColumnName(i)+"</th>");
-	          	out.println("<th>UPDATE</th>");
+	          	  out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
 	          	%>
 	          	</tr>
+	          	<tr>
 	          	<%
-	          	if(rs.next() == false)
-	          		response.sendRedirect("goAdminUpdate.jsp");
-	          	else{
-		          	String valueRowID = "";
-		          	do{
-		          		out.println("<tr>");
-		          		for (int i = 1; i <= columnCount; i++ ){
-		                	  out.println("<td>"+rs.getString(i)+"</td>");
-		                	  if(i==1)
-		                	  	valueRowID = rs.getString(i);
-		          		}
-		          		out.println("<td><input type=\"radio\" name=\"idRadioUpdate\" value="+valueRowID+" required></td>");
-		          		out.println("</tr>");
-		          	}while(rs.next());
-	          	}
+	          	//String date = LocalDateTime.now().toString();
+	          	rs.absolute(Integer.parseInt(radioToUpdate));
+	          		for (int i = 1; i <= columnCount; i++ ){
+	                	  if(i==1)
+	                		  out.println("<td><input type=\"hidden\" name=\"updateInput\" value=" +"\"" + rs.getString(i)+"\""+ " required/></td>");
+	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_"))
+	                		  out.println("<td><input type=\"number\" onkeypress=\"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57\" min=\"0\" step=\"1\" pattern=\"\\d+\" size=90 name=\"updateInput\" value=" +"\"" + rs.getString(i)+" \""+ " required/></td>");
+	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
+	                		  out.println("<td><input type=\"datetime-local\" placeholder=\"yyyy-mm-dd hh:mm:ss\" size=110 name=\"updateInput\" value="+"\"" + rs.getString(i)+"\""+" /></td>");
+	                	  else
+	                		  out.println("<td><input type=\"text\" size=90 name=\"updateInput\" value="+"\"" + rs.getString(i)+"\""+" required/></td>");
+	          		}
 	          	%>
+	          	</tr>
 	          </table>
 	          
 	          <br>
@@ -78,7 +81,7 @@
 
           <button type="submit" onclick="window.location.reload(false);">Refresh</button>
           
-          <form action="goAdminUpdate.jsp" method="POST">
+          <form action="" method="POST">
             <button type="submit">Go Back</button>
           </form>
           
