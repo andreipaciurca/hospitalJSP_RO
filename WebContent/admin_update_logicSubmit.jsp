@@ -54,7 +54,7 @@
 	          	rs.next();
 	          	for (int i = 1; i <= columnCount; i++ ){
 	                	  if(i==1)
-	                		  {System.out.println(radioToUpdate);out.println("<td><input type=\"hidden\" name=\"updateInput\" value=" +"\"" + rs.getString(i)+"\""+ " required/></td>");}
+	                		  out.println("<td><input type=\"hidden\" name=\"updateInput\" value=" +"\"" + rs.getString(i)+"\""+ " required/></td>");
 	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_"))
 	                		  out.println("<td><input type=\"text\" onkeypress=\"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57\" min=\"0\" step=\"1\" size=90 name=\"updateInput\" value=" +"\"" + rs.getString(i)+" \""+ " required/></td>");
 	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
@@ -75,7 +75,7 @@
 
           <button type="submit" onclick="window.location.reload(false);">Refresh</button>
           
-          <form action="" method="POST">
+          <form action="goAdminTheRealUpdate.jsp" method="POST">
             <button type="submit">Go Back</button>
           </form>
           
