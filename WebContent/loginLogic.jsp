@@ -13,13 +13,13 @@
 	}
 	else if(username.toLowerCase().equals("medic")){
 		if(password.toLowerCase().equals("medic"))
-			  response.sendRedirect("admin_homepage.jsp");
+			  response.sendRedirect("medic_homepage.jsp");
 		  else
 			  response.sendRedirect("logout.jsp");
 	}
 	else if(username.toLowerCase().equals("registratura")){
 		if(password.toLowerCase().equals("registratura"))
-			  response.sendRedirect("admin_homepage.jsp");
+			  response.sendRedirect("registratura_homepage.jsp");
 		  else
 			  response.sendRedirect("logout.jsp");
 	}

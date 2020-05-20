@@ -155,16 +155,20 @@ table {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   padding: 3px 3px;
   align-content: center;
+  table-layout: auto;
+  /*border-collapse: collapse;*/
 }
 
 table, th, td {
   border: 1px solid dotted black;
   width:100%;
-  padding: 3px 3px;
+  padding: 6px 6px;
   text-align: center;
   border-spacing: 1em;
   border-collapse: collapse;
+  /*overflow: auto;*/
 }
+
   .others {
     color:#43A047
 }
