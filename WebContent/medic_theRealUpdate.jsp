@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import ="java.sql.*" %>
-<%@ page import ="java.time.LocalDateTime" %>
+<%@ page import ="java.sql.*" 
+		 import ="java.time.LocalDateTime"
+%>
 
 <!DOCTYPE html>
 <html lang="ro">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="administrator_afisare.css">
     <meta name="author" content="Paciurca Andrei-Alexandru">
     <meta http-equiv="Content-Type" content="text/html;">
-    <title>Administrator: Modificare</title>
+    <title>Medic: Modificare</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
@@ -18,14 +19,14 @@
     <div class="login-page">
         <div class="form">
 
-          <h2 style="font-weight: bold; font-style: normal;">(Admin) Update</h2>
+          <h2 style="font-weight: bold; font-style: normal;">(Medic) Update</h2>
           
           <%
-		  String tableUpdate = session.getAttribute("tableUpdate").toString();
+          String tableUpdate = "fise_observatii";
           String radioToUpdate = request.getParameter("idRadioUpdate");
           
           if(tableUpdate==null || tableUpdate=="")
-        	  response.sendRedirect("admin_select_update.jsp");
+        	  response.sendRedirect("medic_homepage.jsp");
           else
         	  session.setAttribute("tableUpdate", tableUpdate);
           
@@ -41,12 +42,17 @@
           int columnCount = rsmd.getColumnCount();
           %>
           
-          <form method="POST" action="admin_update_finalLogic.jsp">
+          <form method="POST" action="medic_update_finalLogic.jsp">
 	          <table>
 	          	<tr>
 	          	<%
 	          	for (int i = 1; i <= columnCount; i++ )
-	          	  out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
+	          		if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_diagnostic"))
+	          	  		out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
+	          		else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
+	          			out.println("<th>"+rsmd.getColumnName(i)+"</th>"); 
+	          		else
+	          			continue;
 	          	%>
 	          	</tr>
 	          	<tr>
@@ -55,14 +61,14 @@
 	          	rs.next();
 	          	String date = LocalDateTime.now().toString();
 	          	for (int i = 1; i <= columnCount; i++ ){
-	                	  if(i==1)
-	                		  out.println("<td><input type=\"hidden\" name=\"updateInput\" value=" +"\"" + rs.getString(i)+"\""+ " required/></td>");
-	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_"))
+	          				if(i==1)
+	          					session.setAttribute("IDrow", rs.getString(i));
+	                	   if(rsmd.getColumnName(i).toString().toLowerCase().contains("id_diagnostic"))
 	                		  out.println("<td><input type=\"text\" onkeypress=\"return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57\" min=\"0\" step=\"1\" size=90 name=\"updateInput\" value=" +"\"" + rs.getString(i)+" \""+ " required/></td>");
 	                	  else if(rsmd.getColumnName(i).toString().toLowerCase().contains("data_"))
 	                		  out.println("<td><input type=\"text\" placeholder=\"yyyy-mm-dd hh:mm:ss\" size=110 name=\"updateInput\" value="+"\"" + rs.getString(i)+"\""+" /></td>");
 	                	  else
-	                		  out.println("<td><input type=\"text\" size=90 name=\"updateInput\" value="+"\"" + rs.getString(i)+"\""+" required/></td>");   
+	                		  continue;   
 	          		}
 	          	%>
 	          	</tr>
@@ -77,7 +83,7 @@
 
           <button type="submit" onclick="window.location.reload(false);">Refresh</button>
           
-          <form action="goAdminTheRealUpdate.jsp" method="POST">
+          <form action="goMedicHomepage.jsp" method="POST">
             <button type="submit">Go Back</button>
           </form>
           

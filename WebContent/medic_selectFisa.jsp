@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="administrator_afisare.css">
     <meta name="author" content="Paciurca Andrei-Alexandru">
     <meta http-equiv="Content-Type" content="text/html;">
-    <title>Administrator: Modificare</title>
+    <title>Medic: Modificare</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
     <div class="login-page">
         <div class="form">
 
-          <h2 style="font-weight: bold; font-style: normal;">(Admin) Update</h2>
+          <h2 style="font-weight: bold; font-style: normal;">(Medic) Update</h2>
           
           <%
           String tableUpdate = "fise_observatii";
@@ -41,7 +41,7 @@
           int columnCount = rsmd.getColumnCount();
           %>
           
-          <form method="POST" action="">
+          <form method="POST" action="medic_theRealUpdate.jsp">
 	          <table>
 	          	<tr>
 	          	<%
