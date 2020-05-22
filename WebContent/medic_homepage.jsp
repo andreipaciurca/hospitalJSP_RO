@@ -16,7 +16,7 @@
         
           <h2 style="font-weight: bold; font-style: normal;">User: Medic</h2><br>
           
-          <form class="login-form" action="" method="post">
+          <form class="login-form" action="medic_selectFisa.jsp" method="post">
             <button type="submit">Modificare Fisa Pacient</button>
           </form>
 
