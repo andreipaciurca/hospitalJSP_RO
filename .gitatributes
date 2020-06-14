@@ -1,0 +1,10 @@
+*.css linguist-language=CSS
+*.jsp linguist-language=HTML
+*.jsp linguist-language=Java
+*.sql linguist-language=MySQL
+
+
+*.css linguist-detectable=true
+*.html linguist-detectable=true
+*.jsp linguist-detectable=true
+*.sql linguist-detectable=true
